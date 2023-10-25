@@ -1,0 +1,48 @@
+      *registration.wrk is generated from W:\Webclient\AnnA\whatsapp_registration2\screen\registration.isp
+       77 key-status is special-names crt status pic 9(4) value 0.
+          88 exit-pushed value 27.
+          88 message-received value 95.
+          88 event-occurred value 96.
+          88 screen-no-input-field value 97.
+          88 screen-time-out value 99.
+       77 quit-mode-flag pic s9(5) comp-4 value 0.
+       77 fsTblProduct pic x(2).
+          88 valid-product value is "00" thru "09".
+       77 window-handle handle of window.
+       77 Eras-Bold-ITC-14v0 handle of font.
+       77 Eras-Bold-ITC-14v0-i handle of font.
+       77 Eras-Bold-ITC-8v0 handle of font.
+       77 Eras-Bold-ITC-10v0 handle of font.
+       77 Eras-Bold-ITC-20v0 handle of font.
+       77 Eras-Bold-ITC-16v0 handle of font.
+       77 Arial-Narrow-8v0 handle of font.
+       77 Arial-Narrow-10v0 handle of font.
+       77 Mongolian-Baiti-10v0 handle of font.
+       77 Eras-Bold-ITC-14v0-i0 handle of font.
+       77 Eras-Bold-ITC-12v0-i handle of font.
+       77 Eras-Bold-ITC-10v0-i handle of font.
+       77 Eras-Light-ITC-10v0-i handle of font.
+       77 Eras-Light-ITC-14v0-i handle of font.
+       77 Eras-Bold-ITC-14v0-i1 handle of font.
+       77 Eras-Light-ITC-12v0 handle of font.
+       77 Arial-Black-8v0 handle of font.
+       77 Arial-Black-8v00 handle of font.
+       01 GRIDPROD.
+          03 gridCod pic x(15).
+          03 gridNam pic x(150).
+          03 gridCat pic x(100).
+          03 gridQtd pic ZZZZZ.
+          03 gridPri pic ZZZ.ZZZ,ZZ.
+          03 gridDes pic x(300).
+          03 gridURL pic x(300).
+       77 window-handle0 handle of window.
+       77 Eras-Bold-ITC-8v00 handle of font.
+       77 Eras-Bold-ITC-10v00 handle of font.
+       77 Eras-Bold-ITC-12v0 handle of font.
+       77  wrk-edit pic 9 value 0.
+       77 wrk-row pic 9(3) value 0.
+       77 wrk-col pic 9(3) value 0.
+       77 wrk-count pic 9(3) value 0.
+       77 wrk-return pic 9(3).
+       77 SansSerif-10v0-b handle of font.
+       77 SansSerif-12v0-b handle of font.

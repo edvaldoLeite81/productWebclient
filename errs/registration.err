@@ -1,0 +1,3 @@
+I --> W:\Webclient\AnnA\whatsapp_registration2\source\registration.cbl
+--W: #292 'maximize' feature not available for FLOATING window RESIZABLE; file = registration.prd, line = 203, col 7
+--W: #254 Procedure name same as data name: PBEDIT; file = registration.evt, line = 159

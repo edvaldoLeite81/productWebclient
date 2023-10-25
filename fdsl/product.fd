@@ -1,0 +1,11 @@
+      *product.fd is generated from W:\Webclient\AnnA\whatsapp_registration2\fd\product.idl
+       fd product
+          .
+       01 tblProductRec.
+          03 productCode pic x(15).
+          03 productName pic x(150).
+          03 productCategory pic x(100).
+          03 productQuantity pic ZZZZZ.
+          03 productPrice pic ZZZ.ZZZ,ZZ.
+          03 productDescription pic x(300).
+          03 productURL pic x(300).

@@ -1,0 +1,355 @@
+      *registration.scr is generated from W:\Webclient\AnnA\whatsapp_registration2\screen\registration.isp
+       01 registrationScreen
+       .
+          03 screen-1-la-1 Label
+             line 0,9
+             column 0,7
+             size 100,2 cells 
+             lines 5,5 cells 
+             background-color rgb x#eaeaea
+             id 3
+             .
+          03 screen-1-la-2 Label
+             line 2,1
+             column 2,9
+             size 35,1 cells 
+             lines 3,1 cells 
+             foreground-color rgb x#003263
+             font Eras-Bold-ITC-14v0-i1
+             id 1
+             transparent
+             title "INTERON "
+             .
+          03 screen-1-la-3 Label
+             line 3,6
+             column 3,1
+             size 34,3 cells 
+             lines 3,0 cells 
+             font Eras-Light-ITC-12v0
+             id 5
+             transparent
+             title "               Store"
+             .
+          03 registrationGrid Grid
+             line 8,5
+             column 2,6
+             size 92,4 cells 
+             lines 33,0 cells 
+             id 2
+             min-width 92,0
+             min-height 50,0
+             notify-mouse
+             boxed
+             centered-headings
+             column-headings
+             adjustable-columns
+             hscroll
+             reordering-columns
+             lm-on-columns 1
+             tiled-headings
+             virtual-width 240
+             row-cursor-background-color rgb x#d6ffd6
+             end-color rgb x#f8f9fa
+             heading-background-color rgb x#d2d2d2
+             divider-color rgb x#d2d2d2
+             cursor-frame-width 0
+             protection 1
+             border-color rgb x#eaeaea
+             border-width ( 2 2 2 2 )
+             .
+          03 pbExit Push-Button
+             exception-value 27
+             line 44,4
+             column 85,6
+             size 8,7 cells 
+             lines 2,7 cells 
+             background-color rgb x#656565
+             foreground-color rgb x#f8f9fa
+             id 4
+             flat
+             title "SAIR"
+             rollover-background-color rgb x#cdeaf2
+             rollover-foreground-color rgb x#000000
+             rollover-border-color rgb x#8de6ff
+             border-width ( 2 2 2 2 )
+             .
+          03 pbSearch Push-Button
+             exception-value 1001
+             line 2,2
+             column 64,9
+             size 13,7 cells 
+             lines 2,7 cells 
+             background-color rgb x#eaeaea
+             id 7
+             flat
+             title "PESQUISAR"
+             rollover-background-color rgb x#cdeaf2
+             rollover-foreground-color rgb x#000000
+             border-color rgb x#eaeaea
+             rollover-border-color rgb x#8de6ff
+             border-width ( 2 2 2 2 )
+             .
+          03 pbEdit Push-Button
+             exception-value 1002
+             line 2,2
+             column 80,0
+             size 13,7 cells 
+             lines 2,7 cells 
+             background-color rgb x#eaeaea
+             id 8
+             flat
+             title "EDITAR"
+             rollover-background-color rgb x#cdeaf2
+             rollover-foreground-color rgb x#000000
+             border-color rgb x#eaeaea
+             rollover-border-color rgb x#8de6ff
+             border-width ( 2 2 2 2 )
+             .
+          03 registrationScreen-pb-1 Push-Button
+             exception-value 1000
+             line 2,3
+             column 48,8
+             size 13,7 cells 
+             lines 2,7 cells 
+             background-color rgb x#eaeaea
+             id 6
+             flat
+             title "CADASTRAR"
+             rollover-background-color rgb x#cdeaf2
+             rollover-border-color rgb x#8de6ff
+             border-width ( 2 2 2 2 )
+             .
+       01 registrationScreen2
+       .
+          03 regstrationScreen2-la-1 Label
+             line 2,1
+             column 3,1
+             size 34,5 cells 
+             lines 2,7 cells 
+             font Eras-Bold-ITC-12v0
+             id 1
+             transparent
+             title "Cadastro de Produtos"
+             .
+          03 regstrationScreen2-la-2 Label
+             line 8,7
+             column 3,1
+             size 6,7 cells 
+             lines 2,7 cells 
+             foreground-color rgb x#656565
+             id 2
+             transparent
+             title "Código"
+             .
+          03 inputCod Entry-Field
+             line 10,9
+             column 3,1
+             size 13,8 cells 
+             lines 2,5 cells 
+             background-color rgb x#ececec
+             id 3
+             no-box
+             left
+             upper
+             max-text 15
+             value productCode
+             border-width ( 0 0 1 0 )
+             .
+          03 inputNam Entry-Field
+             line 10,8
+             column 18,9
+             size 35,5 cells 
+             lines 2,5 cells 
+             background-color rgb x#ececec
+             id 4
+             no-box
+             left
+             upper
+             max-text 150
+             value productName
+             border-width ( 0 0 1 0 )
+             .
+          03 regstrationScreen2-la-3 Label
+             line 8,6
+             column 18,9
+             size 6,7 cells 
+             lines 2,7 cells 
+             foreground-color rgb x#656565
+             id 5
+             transparent
+             title "Nome"
+             .
+          03 regstrationScreen2-la-4 Label
+             line 15,4
+             column 3,2
+             size 10,8 cells 
+             lines 2,7 cells 
+             foreground-color rgb x#656565
+             id 6
+             transparent
+             title "Quantidade"
+             .
+          03 inputQtd Entry-Field
+             line 17,6
+             column 3,2
+             size 13,8 cells 
+             lines 2,5 cells 
+             background-color rgb x#ececec
+             id 7
+             no-box
+             left
+             upper
+             max-text 5
+             value productQuantity
+             border-width ( 0 0 1 0 )
+             .
+          03 regstrationScreen2-la-5 Label
+             line 15,4
+             column 18,8
+             size 6,7 cells 
+             lines 2,7 cells 
+             foreground-color rgb x#656565
+             id 8
+             transparent
+             title "Preço"
+             .
+          03 inputPri Entry-Field
+             line 17,6
+             column 18,8
+             size 13,8 cells 
+             lines 2,5 cells 
+             background-color rgb x#ececec
+             id 9
+             no-box
+             left
+             upper
+             max-text 10
+             value productPrice
+             border-width ( 0 0 1 0 )
+             .
+          03 inputCat Combo-Box
+             line 17,3
+             column 34,2
+             size 20,2 cells 
+             lines 40,0 cells 
+             background-color rgb x#ffffff
+             id 10
+             boxed
+             upper
+             drop-list
+             selection-background-color rgb x#ffffff 
+             selection-foreground-color rgb x#000000
+             value productCategory
+             item-height 2,8
+             .
+          03 regstrationScreen2-la-6 Label
+             line 15,3
+             column 34,6
+             size 19,8 cells 
+             lines 2,7 cells 
+             foreground-color rgb x#656565
+             id 11
+             transparent
+             title "Categoria"
+             .
+          03 inputDes Entry-Field
+             line 24,3
+             column 3,1
+             size 51,5 cells 
+             lines 2,5 cells 
+             background-color rgb x#ececec
+             id 12
+             no-box
+             left
+             upper
+             max-text 150
+             value productDescription
+             border-width ( 0 0 1 0 )
+             .
+          03 regstrationScreen2-la-7 Label
+             line 22,1
+             column 3,1
+             size 22,2 cells 
+             lines 2,7 cells 
+             foreground-color rgb x#656565
+             id 13
+             transparent
+             title "Descrição"
+             .
+          03 inputURL Entry-Field
+             line 30,9
+             column 3,0
+             size 51,5 cells 
+             lines 2,5 cells 
+             background-color rgb x#ececec
+             id 14
+             no-box
+             left
+             max-text 150
+             value productURL
+             border-width ( 0 0 1 0 )
+             .
+          03 regstrationScreen2-la-8 Label
+             line 28,7
+             column 3,0
+             size 22,2 cells 
+             lines 2,7 cells 
+             foreground-color rgb x#656565
+             id 15
+             transparent
+             title "URL da Imagem"
+             .
+          03 registrationScreen2Save Push-Button
+             exception-value 1004
+             line 39,2
+             column 43,8
+             size 10,2 cells 
+             lines 2,5 cells 
+             background-color rgb x#d2d2d2
+             id 16
+             flat
+             title "SALVAR"
+             rollover-background-color rgb x#ddffdd
+             rollover-border-color rgb x#00ff00
+             border-width ( 2 2 2 2 )
+             .
+          03 regstrationScreen2Cancel Push-Button
+             exception-value 1003
+             line 39,2
+             column 29,4
+             size 10,2 cells 
+             lines 2,5 cells 
+             background-color rgb x#d2d2d2
+             id 17
+             flat
+             title "CANCELAR"
+             rollover-background-color rgb x#939393
+             rollover-foreground-color rgb x#f8f9fa
+             rollover-border-color rgb x#595959
+             border-width ( 2 2 2 2 )
+             .
+          03 labelEdit Label
+             line 4,1
+             column 3,3
+             size 26,2 cells 
+             lines 2,3 cells 
+             foreground-color rgb x#00ff00
+             id 18
+             transparent
+             title "Editando..."
+             .
+          03 pbDelete Push-Button
+             exception-value 404
+             line 38,9
+             column 3,4
+             size 10,2 cells 
+             lines 2,5 cells 
+             background-color rgb x#d2d2d2
+             id 19
+             flat
+             title "EXCLUIR"
+             rollover-background-color rgb x#ff6969
+             rollover-foreground-color rgb x#ffffff
+             rollover-border-color rgb x#ff0000
+             border-width ( 2 2 2 2 )
+             .

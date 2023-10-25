@@ -1,0 +1,249 @@
+      *registration.evt is generated from W:\Webclient\AnnA\whatsapp_registration2\screen\registration.isp
+      *start event editor code
+      *escutando tela principal
+       registrationScreen-link-to.
+           evaluate true
+               
+             when key-status = 1000
+               perform clear
+               perform is-registrationScreen2-routine
+           *>***********************************************
+           
+             when key-status = 1001
+               inquire   registrationGrid   ID  IN  control-id
+               move      4                  to  accept-control
+               call      "w$keybuf"         using   1,  "{^F}"
+           *>***********************************************
+           
+             when key-status = 1002
+               inquire registrationGrid CURSOR-Y  wrk-row 
+               perform registrationGrid-evt-msg-gd-dblclick
+              
+           *>***********************************************
+           .
+           
+      
+      *escutando tela de cadastro   
+       registrationScreen2-link-to.
+           
+           evaluate true
+           
+             when key-status = 1003
+               perform registrationExit
+           *>*************************************************
+             when key-status = 1004
+               if wrk-edit = 0
+                   perform validation
+                 else
+                   perform resave
+               end-if 
+           *>*************************************************
+             when key-status = 404
+               display message box "Quer mesmo excluir?"  x'0a0d'
+                           x'0a0d' "Código: " productCode x'0a0d'
+                                   "Nome  : " productName 
+                                   
+               type 2 default is 2 giving  wrk-return
+               
+               if wrk-return = 1
+                 delete product
+                 
+                   if wrk-count > 0
+                     subtract 1 from wrk-count
+                   end-if
+                   
+                   if valid-product 
+                       display message "Registro Excluído!"
+                       before time 200
+                       perform registrationScreen-aft-init-data
+                       perform registrationExit
+                     else
+                       display message "Erro: " fsTblProduct 
+                   end-if
+                   
+               end-if 
+           .
+           
+           
+      *editar   
+       registrationGrid-evt-msg-gd-dblclick.
+           inquire registrationGrid(wrk-row, 1) record-data GRIDPROD 
+           
+           if  gridCod <> spaces
+               move    1 to wrk-edit
+               move    gridCod to productCode
+               move    gridNam to productName
+               move    gridCat to productCategory
+               move    gridQtd to productQuantity
+               move    gridPri to productPrice
+               move    gridDes to productDescription
+               move    gridURL to productURL
+               perform is-registrationScreen2-routine
+              
+             else
+               display message "Sem registro nessa linha!" 
+               before time 250
+               inquire   registrationGrid   ID  IN  control-id
+               move      4                  to  accept-control 
+           end-if
+           .
+           
+      *salvar
+       save.
+           perform readInputs
+           write   tblProductRec
+           add 1 to wrk-count
+           perform clearFields
+           display message box "Produto cadastrado com sucesso!"
+           before time 300
+           perform  registrationScreen-aft-init-data
+           perform clear
+           perform pbEdit 
+           .
+           
+      *salvar edicao
+       resave.
+           perform readInputs 
+           rewrite tblProductRec
+           perform clear
+           initialize tblProductRec 
+           display message box "Edição Salva Com Sucesso!"
+           before time 300
+           perform  registrationScreen-aft-init-data
+           perform pbEdit
+           perform registrationExit
+           .
+           
+           
+       registrationScreen-aft-init-data.
+           modify registrationGrid RESET-GRID 2
+           initialize tblProductRec
+             start     product      key > productPK  
+             perform   until not     valid-product 
+             
+               read      product             next not at end        
+                 move    productCode         to  gridCod
+                 move    productName         to  gridNam
+                 move    productCategory     to  gridCat 
+                 move    productPrice        to  gridPri
+                 move    productQuantity     to  gridQtd
+                 move    productDescription  to  gridDes
+                 move    productURL          to  gridURL
+                 modify  registrationGrid         record-to-add GRIDPROD
+               end-read
+               
+             end-perform 
+             
+            perform pbEdit
+           .
+           
+      *limpar campos
+       clearFields.
+           initialize tblProductRec 
+           display    registrationScreen2 
+           perform    registrationScreen-aft-init-data
+           inquire    inputCod ID IN control-id 
+           move       4 to accept-control
+           .
+           
+       clear.
+           move spaces to productCode
+           move spaces to productName
+           move spaces to productCategory
+           move spaces to productDescription
+           move spaces to productURL
+           move spaces to productPrice 
+           move spaces to productQuantity 
+           .
+           
+       pbEdit.
+           inquire registrationGrid CURSOR-Y  wrk-row
+           if wrk-row < 2
+               modify pbEdit ENABLED  false
+             else
+               modify pbEdit ENABLED  true
+           end-if
+           .
+           
+      *ler inputs para gravacao 
+       readInputs.
+           inquire inputCod value productCode 
+           inquire inputNam value productName 
+           inquire inputDes value productDescription 
+           inquire inputPri value productPrice 
+           inquire inputQtd value productQuantity
+           inquire inputCat value productCategory  
+           inquire inputURL value productURL 
+           .   
+      
+      
+      
+      *alteracoes na tela de cadastro/edicao
+       registrationScreen2-aft-create.
+           if wrk-edit = 1
+               modify inputCod  enabled false
+               modify labelEdit visible true
+               modify pbDelete  visible true
+             else
+               modify inputCod  enabled true
+               modify labelEdit visible false
+               modify pbDelete  visible false
+           end-if
+           .
+           
+           
+      *verifica codigo existente
+       validCod.
+           read product
+             if fsTblProduct = "00" and wrk-edit = 0
+                 display message 'Código em uso, por favor, '
+                                 'tente outro código...'
+                 before time 250
+                 inquire inputCod id in control-id 
+                 move 4 to accept-control 
+               else
+                 perform save
+             end-if
+           .
+
+      *sair da tela de cadastro
+       registrationExit.
+           perform is-registrationScreen2-exit
+           move 0 to wrk-edit
+           initialize tblProductRec 
+           inquire   registrationGrid   ID  IN  control-id
+           move      4                  to  accept-control 
+           .
+           
+      *verificacao antes de salvar
+       validation.
+           inquire inputCod value productCode 
+           inquire inputNam value productName
+               
+               if productCode equal spaces and productName equal spaces
+                 display message  'Preencha os campos corretamente'
+                 before time 250
+                 inquire inputCod id in control-id 
+                 move 4 to accept-control 
+               end-if
+           
+               if productCode equal spaces and productName <> spaces
+                 display message  'Preencha o campo Código'
+                 before time 250
+                 inquire inputCod id in control-id 
+                 move 4 to accept-control 
+               end-if
+           
+               if productCode <> spaces and productName = spaces
+                 display message  'Preencha o campo Nome'
+                 before time 250
+                 inquire inputNam id in control-id 
+                 move 4 to accept-control 
+               end-if
+           
+               if productCode <> spaces and productName <> spaces
+                                    and wrk-edit = 0                      
+                 perform validCod
+               end-if     
+           .
+      *end event editor code

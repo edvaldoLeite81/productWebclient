@@ -1,0 +1,279 @@
+      *registration.prd is generated from W:\Webclient\AnnA\whatsapp_registration2\screen\registration.isp
+       is-initial-routine.
+           accept system-information from system-info.
+           accept terminal-abilities from terminal-info.
+           perform is-load-fonts.
+           perform is-open-files.
+       is-load-fonts.
+           initialize wfont-data eras-bold-itc-12v0.
+           move 12 to wfont-size.
+           move "Eras Bold ITC" to wfont-name.
+           set wfont-bold to false.
+           set wfont-italic to false.
+           set wfont-underline to false.
+           set wfont-strikeout to false.
+           set wfont-fixed-pitch to false.
+           call "w$font" using wfont-get-font eras-bold-itc-12v0 
+           wfont-data.
+           initialize wfont-data eras-bold-itc-14v0-i1.
+           move 14 to wfont-size.
+           move "Eras Bold ITC" to wfont-name.
+           set wfont-bold to false.
+           set wfont-italic to true.
+           set wfont-underline to false.
+           set wfont-strikeout to false.
+           set wfont-fixed-pitch to false.
+           call "w$font" using wfont-get-font eras-bold-itc-14v0-i1 
+           wfont-data.
+           initialize wfont-data eras-light-itc-12v0.
+           move 12 to wfont-size.
+           move "Eras Light ITC" to wfont-name.
+           set wfont-bold to false.
+           set wfont-italic to false.
+           set wfont-underline to false.
+           set wfont-strikeout to false.
+           set wfont-fixed-pitch to false.
+           call "w$font" using wfont-get-font eras-light-itc-12v0 
+           wfont-data.
+           initialize wfont-data sansserif-12v0-b.
+           move 12 to wfont-size.
+           move "SansSerif" to wfont-name.
+           set wfont-bold to true.
+           set wfont-italic to false.
+           set wfont-underline to false.
+           set wfont-strikeout to false.
+           set wfont-fixed-pitch to false.
+           call "w$font" using wfont-get-font sansserif-12v0-b 
+           wfont-data.
+       is-exit-rtn.
+           perform is-close-files.
+           perform is-destroy-fonts.
+           exit program.
+           stop run.
+       is-destroy-fonts.
+           destroy eras-bold-itc-12v0.
+           destroy eras-bold-itc-14v0-i1.
+           destroy eras-light-itc-12v0.
+           destroy sansserif-12v0-b.
+       is-open-files.
+           perform is-product-open.
+       is-product-open.
+           open i-o product
+           if fsTblProduct = "35"
+              open output product
+              if fsTblProduct(1:1) = "0"
+                 close product
+                 open i-o product
+              end-if
+           end-if
+           if not fsTblProduct(1:1) = "0"
+              perform is-extended-file-status
+              perform is-exit-rtn
+           end-if.
+       is-close-files.
+           close product.
+       is-dataset-product-read.
+           read product with no lock.
+       is-dataset-product-read-next.
+           read product next with no lock.
+       is-dataset-product-read-previous.
+           read product previous with no lock.
+       is-dataset-product-delete.
+           delete file product.
+       is-dataset-product-rec-delete.
+           delete product.
+       is-dataset-product-commit.
+           commit transaction.
+       is-dataset-product-rollback.
+           rollback transaction.
+       is-dataset-product-write.
+           write tblProductRec.
+       is-dataset-product-rewrite.
+           rewrite tblProductRec.
+       is-registrationScreen-routine.
+           perform is-registrationScreen-scrn
+           perform is-registrationScreen-proc.
+       is-registrationScreen-scrn.
+           perform is-registrationScreen-create
+           perform is-registrationScreen-init-data.
+       is-registrationScreen-create.
+           display standard window background-low
+              size 95,0
+              lines 48,0
+              line 2,0
+              cell width 10
+              cell height 10
+              label-offset 20
+              background-color rgb x#ffffff foreground-color rgb 
+              x#000000
+              resizable
+              modeless
+              title-bar
+              no wrap
+              width-in-cells
+              title "INTERON Store"
+              layout-manager lm-zoom
+              min-size 95,0
+              min-lines 30,0
+              gradient-color-1 rgb x#ffffff
+              gradient-color-2 rgb x#d2d2d2
+              handle window-handle
+           .
+           display registrationScreen.
+       is-registrationScreen-init-data.
+           perform is-registrationGrid-content.
+           perform registrationScreen-aft-init-data.
+       is-registrationGrid-content.
+           modify registrationGrid
+              column-dividers ( 1 1 1 1 1 1 1 )
+              data-columns ( 1 16 166 266 271 281 581 )
+              display-columns ( 1 20 60 100 112 128 178 )
+              separation ( 5 5 5 5 5 5 5 )
+              alignment ( "C" "C" "C" "C" "C" "C" "C" )
+              data-types ( "X" "X" "X" "X" "ZZZ.ZZZ,ZZ" "X" "X" )
+           .
+           modify registrationGrid
+              row-background-color-pattern rgb 15921906 
+              row-foreground-color-pattern rgb 1644825
+              row-background-color-pattern rgb 16777215 
+              row-foreground-color-pattern rgb 1644825
+           .
+           modify registrationGrid x = 1, y = 1
+              cell-data "Código"
+           .
+           modify registrationGrid x = 2, y = 1
+              cell-data "Nome"
+           .
+           modify registrationGrid x = 3, y = 1
+              cell-data "Categoria"
+           .
+           modify registrationGrid x = 4, y = 1
+              cell-data "Qtd."
+           .
+           modify registrationGrid x = 5, y = 1
+              cell-data "Preço"
+           .
+           modify registrationGrid x = 6, y = 1
+              cell-data "Descrição"
+           .
+           modify registrationGrid x = 7, y = 1
+              cell-data "URL da imagem"
+           .
+           modify registrationGrid x = 8, y = 1
+              cell-data "TEXTO"
+           .
+       is-registrationScreen-proc.
+           perform until exit-pushed
+              accept registrationScreen on exception 
+                 perform is-registrationScreen-evaluate-func
+              end-accept
+           end-perform.
+           destroy window-handle.
+           initialize key-status.
+       is-registrationScreen-evaluate-func.
+           evaluate true
+           when exit-pushed
+              perform is-registrationScreen-exit
+           when event-occurred
+              if event-type = msg-close
+                 perform is-registrationScreen-exit
+              end-if
+           end-evaluate.
+           perform registrationScreen-link-to.
+           move 4 to accept-control.
+       is-registrationScreen-exit.
+           set exit-pushed to true.
+       is-registrationScreen2-routine.
+           perform is-registrationScreen2-scrn
+           perform is-registrationScreen2-proc.
+       is-registrationScreen2-scrn.
+           perform is-registrationScreen2-create
+           perform is-registrationScreen2-init-data.
+       is-registrationScreen2-create.
+           display floating window background-low
+              screen line 41
+              screen column 91
+              size 56,2
+              lines 45,8
+              cell width 10
+              cell height 10
+              label-offset 20
+              background-color rgb x#f8f9fa foreground-color rgb 
+              x#191919
+              resizable
+              modeless
+              no wrap
+              title "Screen"
+              layout-manager lm-zoom
+              max-size 80,0
+              min-size 50,0
+              min-lines 45,8
+              max-lines 55,0
+              gradient-orientation 7
+              gradient-color-1 rgb x#ffffff
+              gradient-color-2 rgb x#e8e8e8
+              handle window-handle0
+           .
+           display registrationScreen2.
+           perform registrationScreen2-aft-create.
+       is-registrationScreen2-init-data.
+           perform is-inputCat-content.
+       is-inputCat-content.
+           modify inputCat
+              item-to-add "audio e vídeo"
+              item-to-add "apicultrura"
+              item-to-add "automotivo"
+              item-to-add "bebês"
+              item-to-add "bebidas"
+              item-to-add "beleza"
+              item-to-add "bolsas, malas e mochilas"
+              item-to-add "brinquedos"
+              item-to-add "cama, mesa e banho"
+              item-to-add "carnes"
+              item-to-add "casa"
+              item-to-add "celulares"
+              item-to-add "computadores"
+              item-to-add "cozinha"
+              item-to-add "derivados"
+              item-to-add "eletrônicos"
+              item-to-add "ervas"
+              item-to-add "esportes"
+              item-to-add "ferramentas"
+              item-to-add "flores e plantas ornamentais"
+              item-to-add "frutas"
+              item-to-add "games"
+              item-to-add "grãos"
+              item-to-add "hortículas"
+              item-to-add "informática"
+              item-to-add "jardinagem"
+              item-to-add "lacticínios"
+              item-to-add "livros e revistas"
+              item-to-add "oleaginosas"
+              item-to-add "orgânicos"
+              item-to-add "papelaria"
+              item-to-add "peixes e frutos do mar"
+              item-to-add "pet shop"
+              item-to-add "roupas, calçados e acessórios"
+              item-to-add "vegetais"
+           .
+       is-registrationScreen2-proc.
+           perform until exit-pushed
+              accept registrationScreen2 on exception 
+                 perform is-registrationScreen2-evaluate-func
+              end-accept
+           end-perform.
+           destroy window-handle0.
+           initialize key-status.
+       is-registrationScreen2-evaluate-func.
+           evaluate true
+           when exit-pushed
+              perform is-registrationScreen2-exit
+           when event-occurred
+              if event-type = cmd-close
+                 perform is-registrationScreen2-exit
+              end-if
+           end-evaluate.
+           perform registrationScreen2-link-to.
+           move 4 to accept-control.
+       is-registrationScreen2-exit.
+           set exit-pushed to true.
